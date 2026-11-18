@@ -2,7 +2,7 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 VERSION="$(cat "$ROOT/VERSION")"
-REPO="${RELEASES_REPO:-g3ntrix/veil-releases}"
+REPO="${RELEASES_REPO:-g3ntrix/veil}"
 "$ROOT/scripts/build-app.sh"
 "$ROOT/scripts/make-dmg.sh"
 DMG="$ROOT/dist/Veil-$VERSION.dmg"

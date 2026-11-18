@@ -6,7 +6,7 @@ you paste one command on the server and Veil does the rest.
 
 - macOS 13+, Apple silicon and Intel
 - Local proxies: SOCKS5 `127.0.0.1:10808` and `10809`, HTTP `10810`, optional Wi-Fi sharing for a phone on `10811`
-- Downloads: [Releases](https://github.com/g3ntrix/veil-releases/releases)
+- Downloads: [Releases](https://github.com/g3ntrix/veil/releases)
 - Made by [g3ntrix](https://github.com/g3ntrix)
 
 ## Features

@@ -1,7 +1,7 @@
 import Foundation
 
 enum AppUpdateService {
-    static let releasesRepo = "g3ntrix/veil-releases"
+    static let releasesRepo = "g3ntrix/veil"
     static var latestURL: URL { URL(string: "https://api.github.com/repos/\(releasesRepo)/releases/latest")! }
     static var releasesPage: URL { URL(string: "https://github.com/\(releasesRepo)/releases")! }
 
