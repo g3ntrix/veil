@@ -1,60 +1,63 @@
 # Veil
 
-A macOS app that gives your Mac, and your phone through it, a fast private connection to your own VPS on networks
-where ordinary VPNs keep stalling. A guided setup takes you from a fresh Ubuntu/Debian server to a working connection:
-you paste one command on the server and Veil does the rest.
+**A fast, private connection to your own server, for your Mac and your phone.**
 
-- macOS 13+, Apple silicon and Intel
-- Local proxies: SOCKS5 `127.0.0.1:10808` and `10809`, HTTP `10810`, optional Wi-Fi sharing for a phone on `10811`
-- Downloads: [Releases](https://github.com/g3ntrix/veil/releases)
-- Made by [g3ntrix](https://github.com/g3ntrix)
+Veil connects your Mac to a small server you own, on networks where ordinary VPNs keep stalling. A step-by-step setup
+gets you from "I have a server" to a working connection in a few minutes. You don't need to know anything about
+networking.
 
-## Features
+<p align="center">
+  <img src="docs/screenshots/dashboard.png" width="48%" alt="Veil dashboard, connected">
+  <img src="docs/screenshots/share-to-phone.png" width="48%" alt="Sharing Veil with a phone using a QR code">
+</p>
 
-- Setup wizard with live checks that turn green on their own, a one-paste server install, and help for cloud firewalls
-- Connection test that shows exactly where a problem is, with a fix for each failure
-- Several servers, change a server's IP without touching the VPS, new keys, export and import
-- System proxy toggle, phone sharing with a QR code, menu bar item, launch at login
+## Download
 
-The app generates all passwords and the certificate itself and keeps them in your Keychain, so the server install is a
-single command that can be run again at any time.
+**[Download the latest version](https://github.com/g3ntrix/veil/releases/latest)** (the `.dmg` file).
 
-## Layout
+Works on macOS 13 or newer, on Apple silicon and Intel Macs.
 
-| Path | What |
-|---|---|
-| `Sources/Veil/App` | App entry, branding, app state, views |
-| `Sources/Veil/Shared` | Models, secrets, Xray config, engine, connection tester, server script, proxy helper, UI components |
-| `Server/` | `install.sh`, `check.sh` and the server gate, embedded into the install command |
-| `Helpers/relayd` | Go helper used by the engine |
-| `scripts/` | Build, DMG, release and leak-check scripts |
+## Install
 
-## Build
+1. Open the downloaded `.dmg` and drag **Veil** into **Applications**.
+2. Open Veil.
+3. If macOS says it can't open Veil, go to **System Settings → Privacy & Security**, scroll down to the message about
+   Veil and click **Open Anyway**.
 
-Requires Xcode 15+ (Swift 5.9) and Go 1.26+.
+Veil isn't notarized by Apple (that needs a paid developer account), so macOS asks you to confirm the first time.
 
-```
-./scripts/fetch-xray-vendor.sh   # universal Xray into vendor/
-./scripts/build-app.sh           # dist/Veil.app (universal, ad-hoc signed)
-./scripts/make-dmg.sh            # dist/Veil-<version>.dmg
-./scripts/build-release.sh       # builds, writes notes with SHA-256, asks before uploading
-```
+## What you need
 
-Tests: `swift test` and `cd Helpers/relayd && go test ./...`. The version lives in `VERSION`.
+- A small Linux server (VPS) with **Ubuntu or Debian**. The cheapest plan is enough. Oracle Cloud has a free tier;
+  Hetzner, DigitalOcean and Vultr cost a few dollars a month.
+- A way to log in to it (the provider shows you how when you create it).
 
-Run `./scripts/check-secrets.sh` before committing or releasing. Put your own server IPs, one per line, in
-`.private/leak-needles.txt` (untracked) so they can never end up in the repo.
+## How to use it
 
-## Known limits
+1. Open Veil and follow the setup. It asks for your server's IP address.
+2. Copy the one command Veil shows you and paste it into your server's terminal. Veil watches and moves on by itself
+   when it's done.
+3. If your provider has its own firewall (Oracle Cloud does), Veil shows you which rule to add.
+4. Veil tests the connection, and you're done. Press the big button to connect or disconnect any time.
 
-- The server side serves one client at a time (one Mac; a phone goes through the Mac).
-- Releases are ad-hoc signed and not notarized. See `docs/FIRST-LAUNCH.txt`.
+**Use it for your whole Mac:** turn on **System proxy**.
+**Use it on your phone:** turn on **Share to phone** and scan the QR code with V2Box, v2rayNG or NekoRay. Your phone
+and Mac must be on the same Wi-Fi.
+
+## Privacy
+
+No ads, no accounts, no tracking. Your passwords and keys are created on your Mac and kept in your Keychain. Veil only
+talks to your own server, and to GitHub to check for updates.
 
 ## Buy me a coffee
 
-USDT (BEP20) `0x71F41696c60C4693305e67eE3Baa650a4E3dA796` · TON `UQCriHkMUa6h9oN059tyC23T13OsQhGGM3hUS2S4IYRBZgvx` ·
-TRX `TFrCzU7bDey9WSh3fhqCBqhaiMzr8VhcUV`
+If Veil is useful to you, you can support it from the **Buy me a coffee** page in the app, or here:
+
+- USDT (BEP20): `0x71F41696c60C4693305e67eE3Baa650a4E3dA796`
+- TON: `UQCriHkMUa6h9oN059tyC23T13OsQhGGM3hUS2S4IYRBZgvx`
+- TRX (TRON): `TFrCzU7bDey9WSh3fhqCBqhaiMzr8VhcUV`
 
 ## License
 
-GPL-3.0. See `LICENSE`. The bundled Xray core is MPL-2.0 ([source](https://github.com/XTLS/Xray-core)).
+Free and open source under the [GPL-3.0](LICENSE). Made by [g3ntrix](https://github.com/g3ntrix).
+Includes [Xray-core](https://github.com/XTLS/Xray-core) (MPL-2.0).

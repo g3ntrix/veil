@@ -39,7 +39,7 @@ struct ShareView: View {
                                 VStack(alignment: .leading, spacing: 10) {
                                     Picker("Format", selection: $app.prefs.lanLinkStyle) {
                                         Text("V2Box / v2rayNG").tag(0); Text("socks5:// (NekoRay)").tag(1)
-                                    }.pickerStyle(.segmented).frame(width: 300)
+                                    }.pickerStyle(.segmented).labelsHidden().fixedSize()
                                     field("Server", ip); field("Port", String(app.prefs.tunnel.lanPort))
                                     field("User", app.prefs.tunnel.lanUser); field("Password", s.lanPassword)
                                     HStack {
