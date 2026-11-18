@@ -37,7 +37,7 @@ Veil isn't notarized by Apple (that needs a paid developer account), so macOS as
 1. Open Veil and follow the setup. It asks for your server's IP address.
 2. Copy the one command Veil shows you and paste it into your server's terminal. Veil watches and moves on by itself
    when it's done.
-3. If your provider has its own firewall (Oracle Cloud does), Veil shows you which rule to add.
+3. If your provider has its own firewall (like Oracle Cloud), Veil shows you which rule to add.
 4. Veil tests the connection, and you're done. Press the big button to connect or disconnect any time.
 
 **Use it for your whole Mac:** turn on **System proxy**.
