@@ -1,0 +1,19 @@
+Installing Veil
+
+1. Drag Veil into the Applications folder.
+2. Open Veil from Applications.
+
+If macOS says Veil "cannot be opened" or "is damaged":
+
+Veil is not notarized by Apple. Notarization needs a paid Apple Developer account, which this project does not
+have. The app is ad-hoc signed, and you install it at your own risk.
+
+  a. Open System Settings, then Privacy & Security.
+  b. Scroll down to the message about Veil and click "Open Anyway". Confirm with your password.
+     (On recent macOS, right-click then Open no longer skips this check.)
+
+If there is no "Open Anyway" button, open Terminal and run:
+
+  xattr -dr com.apple.quarantine /Applications/Veil.app
+
+Then open Veil again.
